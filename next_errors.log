@@ -1,0 +1,45 @@
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of D:\2026  projects\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * D:\2026  projects\house-rent-mgmt-v2\package-lock.json
+
+▲ Next.js 16.2.4 (Turbopack)
+- Environments: .env.local
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+Error: Cannot apply unknown utility class `bg-white/70`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    [2m[at onInvalidCandidate (D:\2026  projects\house-rent-mgmt-v2\node_modules\tailwindcss\dist\lib.js:21:1314)][0m
+    [2m[at Ne (D:\2026  projects\house-rent-mgmt-v2\node_modules\tailwindcss\dist\lib.js:16:38252)][0m
+    [2m[at D:\2026  projects\house-rent-mgmt-v2\node_modules\tailwindcss\dist\lib.js:21:355][0m
+    [2m[at Ur (D:\2026  projects\house-rent-mgmt-v2\node_modules\tailwindcss\dist\lib.js:3:1733)][0m
+    [2m[at I (D:\2026  projects\house-rent-mgmt-v2\node_modules\tailwindcss\dist\lib.js:3:1377)][0m
+    [2m[at Ee (D:\2026  projects\house-rent-mgmt-v2\node_modules\tailwindcss\dist\lib.js:21:172)][0m
+    [2m[at vn (D:\2026  projects\house-rent-mgmt-v2\node_modules\tailwindcss\dist\lib.js:38:294)][0m
+    [2m[at process.processTicksAndRejections (node:internal/process/task_queues:103:5)][0m
+    [2m[at async kn (D:\2026  projects\house-rent-mgmt-v2\node_modules\tailwindcss\dist\lib.js:38:631)][0m
+    [2m[at async Xr (D:\2026  projects\house-rent-mgmt-v2\node_modules\@tailwindcss\node\dist\index.js:10:3415)][0m
+
+> Build error occurred
+Error: Turbopack build failed with 1 errors:
+./house-rent-mgmt-v2/app/globals.css
+Error evaluating Node.js code
+CssSyntaxError: tailwindcss: D:\2026  projects\house-rent-mgmt-v2\app\globals.css:1:1: Cannot apply unknown utility class `bg-white/70`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    at Input.error (house-rent-mgmt-v2/node_modules/postcss/lib/input.js:135:16) [D:\2026  projects\house-rent-mgmt-v2\.next\build\chunks\0k3h_03j-src._.js:4699:22]
+    at error (house-rent-mgmt-v2/node_modules/postcss/lib/node.js:146:32) [D:\2026  projects\house-rent-mgmt-v2\.next\build\chunks\0k3h_03j-src._.js:961:38]
+    [at Object.Once (D:\2026  projects\house-rent-mgmt-v2\node_modules\@tailwindcss\postcss\dist\index.js:10:6913)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:103:5)]
+    at async LazyResult.runAsync (house-rent-mgmt-v2/node_modules/postcss/lib/lazy-result.js:293:11) [D:\2026  projects\house-rent-mgmt-v2\.next\build\chunks\0k3h_03j-src._.js:6262:21]
+    at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34) [D:\2026  projects\house-rent-mgmt-v2\.next\build\chunks\[root-of-the-server]__0hlwbt1._.js:146:36]
+    at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23) [D:\2026  projects\house-rent-mgmt-v2\.next\build\chunks\[root-of-the-server]__0n~2qqz._.js:443:31]
+
+Import trace:
+  Client Component Browser:
+    ./house-rent-mgmt-v2/app/globals.css [Client Component Browser]
+    ./house-rent-mgmt-v2/app/layout.tsx [Server Component]
+
+
+    at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34) [D:\2026  projects\house-rent-mgmt-v2\.next\build\chunks\[root-of-the-server]__0hlwbt1._.js:146:36])
+    at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23) [D:\2026  projects\house-rent-mgmt-v2\.next\build\chunks\[root-of-the-server]__0n~2qqz._.js:443:31])

@@ -1,0 +1,1 @@
+lib/session.ts(1,26): error TS2724: '"iron-session"' has no exported member named 'IronSessionOptions'. Did you mean 'SessionOptions'?
