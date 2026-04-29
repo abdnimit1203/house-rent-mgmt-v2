@@ -14,11 +14,13 @@ export default async function Home() {
       <header className="bg-white dark:bg-slate-900 border-b dark:border-slate-800 sticky top-0 z-10 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 text-primary font-bold text-xl hover:opacity-80 transition-opacity">
-            <HomeIcon className="h-6 w-6" />
+            {/* <HomeIcon className="h-6 w-6" /> */}
+            <img src="/logo.png" alt="ico" width={42} height={42} />
             <span>BariBhara</span>
           </Link>
           <div className="flex items-center gap-4">
             <ThemeToggle />
+
             <Link 
               href="/login" 
               className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors"

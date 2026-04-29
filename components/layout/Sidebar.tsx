@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { 
   LayoutDashboard, Users, UserPlus, 
-  Settings, Droplet, CreditCard, LogOut, Home, User, Megaphone
+  Settings, Droplet, CreditCard, LogOut, Home, User, Megaphone, X
 } from 'lucide-react';
 import { authApi } from '@/lib/apiClient';
 import { cn } from '@/lib/utils';
@@ -21,7 +21,12 @@ const navItems = [
   { icon: Megaphone, label: 'Advertisements', href: '/advertisements' },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -32,12 +37,18 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-40 w-64 border-r dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col shadow-sm transition-colors">
-      <div className="h-16 flex items-center px-6 border-b dark:border-slate-800">
-        <Link href="/" className="text-lg font-bold text-primary flex items-center gap-2 hover:opacity-80 transition-opacity">
-          <Home className="h-5 w-5" />
+    <aside className={cn(
+      "fixed inset-y-0 left-0 z-50 w-64 border-r dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col shadow-sm transition-transform duration-300 transform lg:translate-x-0 transition-colors",
+      isOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"
+    )}>
+      <div className="h-16 flex items-center justify-between px-6 border-b dark:border-slate-800">
+        <Link href="/" className="text-lg font-bold text-primary flex items-center gap-2 hover:opacity-80 transition-opacity" onClick={onClose}>
+          <img src="/logo.png" alt="ico" width={32} height={32} />
           BariBhara
         </Link>
+        <Button variant="ghost" size="icon" className="lg:hidden h-8 w-8 text-slate-500" onClick={onClose}>
+          <X className="h-5 w-5" />
+        </Button>
       </div>
 
       <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
@@ -47,6 +58,7 @@ export function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={onClose}
               className={cn(
                 "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                 active 

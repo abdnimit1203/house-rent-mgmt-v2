@@ -78,7 +78,7 @@ export default function RoomsPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-slate-800">Rooms</h1>
+        <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Rooms</h1>
         <Button onClick={openAdd}>
           <Plus className="mr-2 h-4 w-4" /> Add Room
         </Button>
@@ -86,33 +86,33 @@ export default function RoomsPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {rooms?.map((room) => (
-          <Card key={room._id} className="hover:shadow-md transition-shadow relative group">
+          <Card key={room._id} className="hover:shadow-md dark:shadow-slate-900/50 transition-shadow relative group dark:bg-slate-900 dark:border-slate-800">
             <CardContent className="p-6">
               <div className="flex justify-between items-start">
                 <div className="flex items-center gap-3">
-                  <div className={`p-3 rounded-xl ${room.isOccupied ? 'bg-primary/10 text-primary' : 'bg-slate-100 text-slate-500'}`}>
+                  <div className={`p-3 rounded-xl ${room.isOccupied ? 'bg-primary/10 dark:bg-primary/20 text-primary' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400'}`}>
                     <Home className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg">{room.roomNumber}</h3>
-                    <p className="text-sm text-slate-500">{room.floor || 'N/A'}</p>
+                    <h3 className="font-semibold text-lg dark:text-slate-100">{room.roomNumber}</h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">{room.floor || 'N/A'}</p>
                   </div>
                 </div>
               </div>
               
-              <div className="mt-4 pt-4 border-t flex justify-between text-sm">
-                <span className={room.isOccupied ? 'text-primary font-medium' : 'text-slate-500'}>
+              <div className="mt-4 pt-4 border-t dark:border-slate-800 flex justify-between text-sm">
+                <span className={room.isOccupied ? 'text-primary font-medium' : 'text-slate-500 dark:text-slate-400'}>
                   {room.isOccupied ? 'Occupied' : 'Vacant'}
                 </span>
                 {room.hasWaterBill && (
-                  <span className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-xs">Water bill</span>
+                  <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 px-2 py-0.5 rounded text-xs">Water bill</span>
                 )}
               </div>
 
               {/* Action overlay on hover */}
               <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex space-x-1">
-                <Button variant="outline" size="icon" className="h-8 w-8 bg-white" onClick={() => openEdit(room)}>
-                  <Edit className="h-3.5 w-3.5 text-slate-600" />
+                <Button variant="outline" size="icon" className="h-8 w-8 bg-white dark:bg-slate-800 dark:border-slate-700" onClick={() => openEdit(room)}>
+                  <Edit className="h-3.5 w-3.5 text-slate-600 dark:text-slate-400" />
                 </Button>
                 {!room.isOccupied && (
                   <Button variant="destructive" size="icon" className="h-8 w-8" onClick={() => handleDelete(room._id, room.roomNumber)}>

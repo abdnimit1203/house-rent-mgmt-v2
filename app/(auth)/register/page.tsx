@@ -30,11 +30,11 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50 p-4">
-      <div className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-xl">
+    <div className="flex min-h-screen items-center justify-center bg-slate-50 dark:bg-slate-950 p-4 transition-colors">
+      <div className="w-full max-w-sm rounded-2xl bg-white dark:bg-slate-900 p-8 shadow-xl border dark:border-slate-800 transition-colors">
         <div className="mb-8 text-center">
-          <h1 className="text-2xl font-bold text-slate-900">Create Account</h1>
-          <p className="text-sm text-slate-500">Become a House Lord today</p>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Create Account</h1>
+          <p className="text-sm text-slate-500 dark:text-slate-400">Become a House Lord today</p>
         </div>
 
         {error && (
@@ -77,7 +77,7 @@ export default function RegisterPage() {
           </Button>
         </form>
 
-        <div className="mt-6 text-center text-sm text-slate-500">
+        <div className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
           Already have an account?{' '}
           <Link href="/login" className="font-semibold text-primary hover:underline">
             Sign In

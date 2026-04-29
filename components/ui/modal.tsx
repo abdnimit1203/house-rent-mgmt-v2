@@ -26,9 +26,9 @@ export function Modal({ isOpen, onClose, title, children, className }: ModalProp
         className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity" 
         onClick={onClose}
       />
-      <div className={cn("relative z-50 w-full max-w-lg rounded-xl bg-background p-6 shadow-lg animate-slide-up", className)}>
+      <div className={cn("relative z-50 w-full max-w-lg rounded-xl bg-background dark:bg-slate-900 border dark:border-slate-800 p-6 shadow-lg animate-slide-up transition-colors", className)}>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold">{title}</h2>
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">{title}</h2>
           <Button variant="ghost" size="icon" onClick={onClose} className="h-8 w-8 rounded-full">
             <X className="h-4 w-4" />
           </Button>

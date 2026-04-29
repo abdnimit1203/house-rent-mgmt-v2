@@ -52,7 +52,7 @@ export default function MeterReadingsPage() {
   return (
     <div className="space-y-6 max-w-5xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <h1 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
+        <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
           <Zap className="h-6 w-6 text-yellow-500" /> Meter Readings
         </h1>
         <MonthYearSelector 
@@ -61,39 +61,41 @@ export default function MeterReadingsPage() {
         />
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
-        <table className="w-full text-sm text-left">
-          <thead className="bg-slate-50 text-slate-500 font-medium border-b border-slate-200">
-            <tr>
-              <th className="px-6 py-4">Tenant</th>
-              <th className="px-6 py-4">Previous Reading</th>
-              <th className="px-6 py-4">Current Reading</th>
-              <th className="px-6 py-4">Units Used</th>
-              <th className="px-6 py-4 text-right">Action</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-100">
-            {activeTenants.length === 0 && (
+      <div className="bg-white dark:bg-slate-900 rounded-xl shadow-sm border dark:border-slate-800 overflow-hidden transition-colors">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left min-w-[700px]">
+            <thead className="bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 font-medium border-b dark:border-slate-800">
               <tr>
-                <td colSpan={5} className="px-6 py-8 text-center text-slate-500">
-                  No active tenants found.
-                </td>
+                <th className="px-6 py-4">Tenant</th>
+                <th className="px-6 py-4">Previous Reading</th>
+                <th className="px-6 py-4">Current Reading</th>
+                <th className="px-6 py-4">Units Used</th>
+                <th className="px-6 py-4 text-right">Action</th>
               </tr>
-            )}
-            {activeTenants.map((tenant) => {
-              const existing = getExistingReading(tenant._id);
-              return (
-                <MeterRow 
-                  key={tenant._id} 
-                  tenant={tenant} 
-                  existingReading={existing} 
-                  onSave={(p: string, c: string) => handleSave(tenant._id, p, c)}
-                  isSaving={savingId === tenant._id}
-                />
-              );
-            })}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+              {activeTenants.length === 0 && (
+                <tr>
+                  <td colSpan={5} className="px-6 py-8 text-center text-slate-500 dark:text-slate-400">
+                    No active tenants found.
+                  </td>
+                </tr>
+              )}
+              {activeTenants.map((tenant) => {
+                const existing = getExistingReading(tenant._id);
+                return (
+                  <MeterRow 
+                    key={tenant._id} 
+                    tenant={tenant} 
+                    existingReading={existing} 
+                    onSave={(p: string, c: string) => handleSave(tenant._id, p, c)}
+                    isSaving={savingId === tenant._id}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
@@ -114,10 +116,10 @@ function MeterRow({ tenant, existingReading, onSave, isSaving }: any) {
   const saved = !!existingReading;
 
   return (
-    <tr className="hover:bg-slate-50 transition-colors">
-      <td className="px-6 py-4 font-medium text-slate-900">
+    <tr className="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+      <td className="px-6 py-4 font-medium text-slate-900 dark:text-slate-100">
         <div>{tenant.name}</div>
-        <div className="text-xs text-slate-500 mt-1">Room {tenant.room?.roomNumber || 'N/A'}</div>
+        <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">Room {tenant.room?.roomNumber || 'N/A'}</div>
       </td>
       <td className="px-6 py-4">
         <Input 
@@ -132,13 +134,13 @@ function MeterRow({ tenant, existingReading, onSave, isSaving }: any) {
         />
       </td>
       <td className="px-6 py-4">
-        <div className="w-16 text-center font-semibold text-slate-700 bg-slate-100 py-1.5 rounded-md">
+        <div className="w-16 text-center font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 py-1.5 rounded-md">
           {units}
         </div>
       </td>
       <td className="px-6 py-4 text-right">
         {saved ? (
-          <span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1.5 rounded-md">
+          <span className="text-sm font-bold text-primary bg-primary/10 dark:bg-primary/20 px-3 py-1.5 rounded-md">
             SAVED
           </span>
         ) : (

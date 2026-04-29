@@ -47,7 +47,7 @@ export default function PaymentsPage() {
   return (
     <div className="space-y-6 max-w-6xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <h1 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
+        <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
           <CreditCard className="h-6 w-6 text-green-500" /> Payments & Billing
         </h1>
         <MonthYearSelector 
@@ -56,9 +56,9 @@ export default function PaymentsPage() {
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
         {activeTenants.length === 0 && (
-          <div className="col-span-full py-8 text-center text-slate-500">
+          <div className="col-span-full py-8 text-center text-slate-500 dark:text-slate-400">
             No active tenants to bill.
           </div>
         )}
@@ -88,19 +88,19 @@ function PaymentCard({ tenant, payment, onGenerate, isGenerating, onPaymentRecor
   // If no payment exists, show generate state
   if (!payment) {
     return (
-      <Card className="border-dashed border-2 border-slate-200">
+      <Card className="border-dashed border-2 border-slate-200 dark:border-slate-800 dark:bg-slate-900/50">
         <CardContent className="p-6 flex flex-col items-center justify-center text-center space-y-4 h-full min-h-[250px]">
-          <div className="h-12 w-12 rounded-full bg-slate-100 flex items-center justify-center">
-            <FileText className="h-6 w-6 text-slate-400" />
+          <div className="h-12 w-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+            <FileText className="h-6 w-6 text-slate-400 dark:text-slate-500" />
           </div>
           <div>
-            <h3 className="font-semibold text-lg">{tenant.name}</h3>
-            <p className="text-sm text-slate-500">Room {tenant.room?.roomNumber}</p>
+            <h3 className="font-semibold text-lg dark:text-slate-100">{tenant.name}</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Room {tenant.room?.roomNumber}</p>
           </div>
           <Button onClick={onGenerate} disabled={isGenerating} variant="secondary">
             {isGenerating ? 'Generating...' : 'Generate Bill'}
           </Button>
-          <p className="text-xs text-slate-400 max-w-[200px]">
+          <p className="text-xs text-slate-400 dark:text-slate-500 max-w-[200px]">
             Make sure meter readings and water bills are entered first.
           </p>
         </CardContent>
@@ -130,26 +130,26 @@ function PaymentCard({ tenant, payment, onGenerate, isGenerating, onPaymentRecor
 
   return (
     <>
-      <Card className={`relative overflow-hidden transition-all ${isPaid ? 'border-green-200 shadow-sm' : 'border-amber-200 shadow-md'}`}>
+      <Card className={`relative overflow-hidden transition-all dark:bg-slate-900 ${isPaid ? 'border-green-200 dark:border-green-900/50 shadow-sm' : 'border-amber-200 dark:border-amber-900/50 shadow-md'}`}>
         {/* Status Tab */}
         <div className={`absolute top-0 inset-x-0 h-1.5 ${isPaid ? 'bg-green-500' : isPartial ? 'bg-amber-500' : 'bg-red-500'}`} />
         
         <CardHeader className="pb-2">
           <div className="flex justify-between items-start">
             <div>
-              <CardTitle className="text-xl">{tenant.name}</CardTitle>
-              <p className="text-sm text-slate-500">Room {tenant.room?.roomNumber}</p>
+              <CardTitle className="text-xl dark:text-slate-100">{tenant.name}</CardTitle>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Room {tenant.room?.roomNumber}</p>
             </div>
             {isPaid ? (
-              <span className="flex items-center gap-1 text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded">
+              <span className="flex items-center gap-1 text-xs font-bold text-green-700 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-2 py-1 rounded">
                 <CheckCircle2 className="h-3.5 w-3.5" /> PAID
               </span>
             ) : isPartial ? (
-              <span className="flex items-center gap-1 text-xs font-bold text-amber-700 bg-amber-100 px-2 py-1 rounded">
+              <span className="flex items-center gap-1 text-xs font-bold text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/30 px-2 py-1 rounded">
                 PARTIAL
               </span>
             ) : (
-              <span className="flex items-center gap-1 text-xs font-bold text-red-700 bg-red-100 px-2 py-1 rounded">
+              <span className="flex items-center gap-1 text-xs font-bold text-red-700 dark:text-red-400 bg-red-100 dark:bg-red-900/30 px-2 py-1 rounded">
                 <AlertCircle className="h-3.5 w-3.5" /> UNPAID
               </span>
             )}
@@ -158,22 +158,22 @@ function PaymentCard({ tenant, payment, onGenerate, isGenerating, onPaymentRecor
         
         <CardContent className="space-y-4 pt-2">
           {/* Bill Breakdown */}
-          <div className="bg-slate-50 p-3 rounded-lg border text-sm space-y-2">
-            <div className="flex justify-between"><span className="text-slate-500">Rent</span><span>{formatCurrency(payment.rentAmount)}</span></div>
-            <div className="flex justify-between"><span className="text-slate-500">Electricity</span><span>{formatCurrency(payment.electricityBill)}</span></div>
-            <div className="flex justify-between"><span className="text-slate-500">Water</span><span>{formatCurrency(payment.waterBill)}</span></div>
+          <div className="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-lg border dark:border-slate-800 text-sm space-y-2">
+            <div className="flex justify-between"><span className="text-slate-500 dark:text-slate-400">Rent</span><span className="dark:text-slate-100">{formatCurrency(payment.rentAmount)}</span></div>
+            <div className="flex justify-between"><span className="text-slate-500 dark:text-slate-400">Electricity</span><span className="dark:text-slate-100">{formatCurrency(payment.electricityBill)}</span></div>
+            <div className="flex justify-between"><span className="text-slate-500 dark:text-slate-400">Water</span><span className="dark:text-slate-100">{formatCurrency(payment.waterBill)}</span></div>
             {payment.previousDue > 0 && (
-              <div className="flex justify-between text-red-600"><span className="font-medium">Previous Due</span><span>{formatCurrency(payment.previousDue)}</span></div>
+              <div className="flex justify-between text-red-600 dark:text-red-400"><span className="font-medium">Previous Due</span><span>{formatCurrency(payment.previousDue)}</span></div>
             )}
-            <div className="border-t pt-2 mt-2 flex justify-between font-bold text-base">
+            <div className="border-t dark:border-slate-700 pt-2 mt-2 flex justify-between font-bold text-base dark:text-slate-100">
               <span>Total Bill</span><span>{formatCurrency(payment.totalBill)}</span>
             </div>
           </div>
 
-          <div className="flex justify-between items-center bg-white p-3 border rounded-lg shadow-sm">
+          <div className="flex justify-between items-center bg-white dark:bg-slate-950 p-3 border dark:border-slate-800 rounded-lg shadow-sm">
             <div>
-              <div className="text-xs text-slate-500 mb-1">Curent Due</div>
-              <div className={`font-bold text-lg ${payment.due > 0 ? 'text-red-600' : 'text-green-600'}`}>
+              <div className="text-xs text-slate-500 dark:text-slate-400 mb-1">Curent Due</div>
+              <div className={`font-bold text-lg ${payment.due > 0 ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'}`}>
                 {formatCurrency(payment.due)}
               </div>
             </div>
@@ -186,7 +186,7 @@ function PaymentCard({ tenant, payment, onGenerate, isGenerating, onPaymentRecor
 
       <Modal isOpen={isPayModalOpen} onClose={() => setIsPayModalOpen(false)} title={`Record Payment for ${tenant.name}`}>
          <form onSubmit={handleRecordPayment} className="space-y-4">
-            <div className="bg-amber-50 text-amber-800 p-3 rounded text-sm mb-4">
+            <div className="bg-amber-50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-400 p-3 rounded text-sm mb-4 border dark:border-amber-900/50">
               Total Due: <strong>{formatCurrency(payment.due)}</strong>
             </div>
             <div className="space-y-2">

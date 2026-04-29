@@ -58,15 +58,15 @@ export default function ProfilePage() {
 
   return (
     <div className="space-y-6 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
+      <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
         <User className="h-6 w-6" /> Profile
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Info Card */}
-        <Card>
+        <Card className="dark:bg-slate-900 dark:border-slate-800">
           <CardHeader>
-            <CardTitle>Personal Information</CardTitle>
+            <CardTitle className="dark:text-slate-100">Personal Information</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleProfileUpdate} className="space-y-4">
@@ -76,8 +76,8 @@ export default function ProfilePage() {
               </div>
               <div className="space-y-2">
                 <Label>Email</Label>
-                <Input disabled value={profile.email} className="bg-slate-100" />
-                <p className="text-xs text-muted-foreground">Email cannot be changed.</p>
+                <Input disabled value={profile.email} className="bg-slate-100 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400" />
+                <p className="text-xs text-muted-foreground dark:text-slate-500">Email cannot be changed.</p>
               </div>
               <div className="space-y-2">
                 <Label>Phone</Label>
@@ -93,14 +93,14 @@ export default function ProfilePage() {
         </Card>
 
         {/* Password Card */}
-        <Card>
+        <Card className="dark:bg-slate-900 dark:border-slate-800">
           <CardHeader>
-            <CardTitle>Change Password</CardTitle>
+            <CardTitle className="dark:text-slate-100">Change Password</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handlePasswordUpdate} className="space-y-4">
-              {passError && <div className="text-sm text-red-600 bg-red-50 p-3 rounded">{passError}</div>}
-              {passSuccess && <div className="text-sm text-green-600 bg-green-50 p-3 rounded">{passSuccess}</div>}
+              {passError && <div className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30 p-3 rounded border dark:border-red-900/50">{passError}</div>}
+              {passSuccess && <div className="text-sm text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950/30 p-3 rounded border dark:border-green-900/50">{passSuccess}</div>}
               
               <div className="space-y-2">
                 <Label>Current Password</Label>

@@ -20,16 +20,16 @@ export function MonthYearSelector({ month, year, onChange }: MonthYearSelectorPr
   };
 
   return (
-    <div className="flex items-center gap-4 bg-white px-4 py-2 rounded-xl shadow-sm border w-max">
-      <Button variant="ghost" size="icon" onClick={prevMonth} className="h-8 w-8">
+    <div className="flex items-center gap-4 bg-white dark:bg-slate-900 px-4 py-2 rounded-xl shadow-sm border dark:border-slate-800 w-max transition-colors">
+      <Button variant="ghost" size="icon" onClick={prevMonth} className="h-8 w-8 text-slate-500 dark:text-slate-400">
         <ChevronLeft className="h-4 w-4" />
       </Button>
       
-      <div className="w-48 text-center font-semibold text-lg text-slate-800">
+      <div className="w-48 text-center font-semibold text-lg text-slate-800 dark:text-slate-100">
         {MONTHS[month - 1]} {year}
       </div>
 
-      <Button variant="ghost" size="icon" onClick={nextMonth} className="h-8 w-8">
+      <Button variant="ghost" size="icon" onClick={nextMonth} className="h-8 w-8 text-slate-500 dark:text-slate-400">
         <ChevronRight className="h-4 w-4" />
       </Button>
     </div>

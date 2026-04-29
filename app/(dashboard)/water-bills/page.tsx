@@ -53,7 +53,7 @@ export default function WaterBillsPage() {
   return (
     <div className="space-y-6 max-w-5xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <h1 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
+        <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
           <Droplet className="h-6 w-6 text-blue-500" /> Monthly Water Bills
         </h1>
         <MonthYearSelector 
@@ -62,13 +62,13 @@ export default function WaterBillsPage() {
         />
       </div>
 
-      <div className="bg-blue-50 text-blue-800 p-4 rounded-lg text-sm mb-6 border border-blue-100">
+      <div className="bg-blue-50 dark:bg-blue-950/30 text-blue-800 dark:text-blue-400 p-4 rounded-lg text-sm mb-6 border border-blue-100 dark:border-blue-900/50 transition-colors">
         You must enter the water bill for these rooms before you can generate their full monthly rent bill.
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {waterRooms.length === 0 && (
-          <div className="col-span-full py-8 text-center text-slate-500">
+          <div className="col-span-full py-8 text-center text-slate-500 dark:text-slate-400">
             No rooms are configured to require a separate water bill.
           </div>
         )}
@@ -101,18 +101,18 @@ function WaterBillCard({ room, existingEntry, onSave, isSaving }: any) {
   const saved = !!existingEntry;
 
   return (
-    <Card className={saved ? 'border-primary shadow-sm bg-primary/5' : ''}>
+    <Card className={saved ? 'border-primary dark:border-primary shadow-sm bg-primary/5 dark:bg-primary/10' : 'dark:bg-slate-900 dark:border-slate-800'}>
       <CardContent className="p-5">
         <div className="flex justify-between items-start mb-4">
           <div>
-            <h3 className="font-semibold text-lg text-slate-800">Room {room.roomNumber}</h3>
+            <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Room {room.roomNumber}</h3>
             {room.tenantId ? (
-              <span className="text-xs px-2 py-1 bg-slate-100 rounded text-slate-600">Occupied</span>
+              <span className="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-slate-600 dark:text-slate-400">Occupied</span>
             ) : (
-              <span className="text-xs px-2 py-1 bg-red-50 text-red-600 rounded">Vacant</span>
+              <span className="text-xs px-2 py-1 bg-red-50 dark:bg-red-950/30 text-red-600 dark:text-red-400 rounded">Vacant</span>
             )}
           </div>
-          {saved && <span className="text-xs font-bold text-primary bg-primary/20 px-2 py-1 rounded">SAVED</span>}
+          {saved && <span className="text-xs font-bold text-primary bg-primary/20 dark:bg-primary/30 px-2 py-1 rounded">SAVED</span>}
         </div>
 
         <div className="flex gap-2">

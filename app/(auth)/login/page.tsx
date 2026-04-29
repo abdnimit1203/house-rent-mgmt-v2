@@ -31,11 +31,11 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50 p-4">
-      <div className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-xl">
+    <div className="flex min-h-screen items-center justify-center bg-slate-50 dark:bg-slate-950 p-4 transition-colors">
+      <div className="w-full max-w-sm rounded-2xl bg-white dark:bg-slate-900 p-8 shadow-xl border dark:border-slate-800 transition-colors">
         <div className="mb-8 text-center">
-          <h1 className="text-2xl font-bold text-slate-900">Welcome Back</h1>
-          <p className="text-sm text-slate-500">Sign in to manage your properties</p>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Welcome Back</h1>
+          <p className="text-sm text-slate-500 dark:text-slate-400">Sign in to manage your properties</p>
         </div>
 
         {error && (
@@ -65,7 +65,7 @@ export default function LoginPage() {
           </Button>
         </form>
 
-        <div className="mt-6 text-center text-sm text-slate-500">
+        <div className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
           Don't have an account?{' '}
           <Link href="/register" className="font-semibold text-primary hover:underline">
             Register

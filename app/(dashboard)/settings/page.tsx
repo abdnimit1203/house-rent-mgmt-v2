@@ -41,14 +41,14 @@ export default function SettingsPage() {
 
   return (
     <div className="space-y-6 max-w-2xl mx-auto py-8">
-      <h1 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
+      <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
         <SettingsIcon className="h-6 w-6" /> System Settings
       </h1>
 
-      <Card>
+      <Card className="dark:bg-slate-900 dark:border-slate-800">
         <CardHeader>
-          <CardTitle>Rates & Defaults</CardTitle>
-          <CardDescription>Configure global calculation factors for bills</CardDescription>
+          <CardTitle className="dark:text-slate-100">Rates & Defaults</CardTitle>
+          <CardDescription className="dark:text-slate-400">Configure global calculation factors for bills</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSave} className="space-y-6">
@@ -59,9 +59,9 @@ export default function SettingsPage() {
                   type="number" step="0.1" required 
                   value={perUnitRate} 
                   onChange={e => setPerUnitRate(e.target.value)} 
-                  className="max-w-[200px]"
+                  className="max-w-[200px] dark:bg-slate-950 dark:border-slate-800"
                 />
-                <span className="text-sm text-slate-500">per KWh</span>
+                <span className="text-sm text-slate-500 dark:text-slate-400">per KWh</span>
               </div>
             </div>
 
@@ -71,9 +71,9 @@ export default function SettingsPage() {
                 type="number" required 
                 value={defaultWaterBill} 
                 onChange={e => setDefaultWaterBill(e.target.value)} 
-                className="max-w-[200px]"
+                className="max-w-[200px] dark:bg-slate-950 dark:border-slate-800"
               />
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-muted-foreground dark:text-slate-500">
                 This is just a default placeholder when entering monthly water bills for rooms.
               </p>
             </div>

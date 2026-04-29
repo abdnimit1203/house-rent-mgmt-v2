@@ -32,7 +32,7 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <h1 className="text-2xl font-bold text-slate-800">Overview</h1>
+        <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Overview</h1>
         <MonthYearSelector 
           month={period.month} year={period.year} 
           onChange={(m, y) => setPeriod({ month: m, year: y })} 
@@ -70,9 +70,9 @@ export default function DashboardPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Charts & Analytics */}
-        <Card className="lg:col-span-1">
+        <Card className="lg:col-span-1 dark:bg-slate-900 border dark:border-slate-800">
           <CardContent className="p-6">
-            <h3 className="font-semibold text-lg mb-6">Payment Distribution</h3>
+            <h3 className="font-semibold text-lg mb-6 dark:text-slate-100">Payment Distribution</h3>
             {pieData.length > 0 ? (
               <div className="h-[250px]">
                 <ResponsiveContainer width="100%" height="100%">
@@ -96,30 +96,30 @@ export default function DashboardPage() {
         </Card>
 
         {/* Tenant Summary List */}
-        <Card className="lg:col-span-2">
+        <Card className="lg:col-span-2 dark:bg-slate-900 border dark:border-slate-800">
           <CardContent className="p-0">
-            <div className="p-6 border-b">
-              <h3 className="font-semibold text-lg">Tenant Summaries</h3>
+            <div className="p-6 border-b dark:border-slate-800">
+              <h3 className="font-semibold text-lg dark:text-slate-100">Tenant Summaries</h3>
             </div>
             <div className="divide-y max-h-[400px] overflow-y-auto">
               {stats.tenantSummaries.length === 0 && (
                 <div className="p-6 text-center text-slate-500 text-sm">No tenants found</div>
               )}
               {stats.tenantSummaries.map(({ tenant, payment, status }: any) => (
-                <div key={tenant._id} className="p-4 flex items-center justify-between hover:bg-slate-50">
+                <div key={tenant._id} className="p-4 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
                   <div>
-                    <h4 className="font-medium text-slate-900">{tenant.name}</h4>
-                    <p className="text-xs text-slate-500">Room {tenant.room?.roomNumber}</p>
+                    <h4 className="font-medium text-slate-900 dark:text-slate-100">{tenant.name}</h4>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Room {tenant.room?.roomNumber}</p>
                   </div>
                   <div className="text-right flex items-center gap-4">
-                    <div className="text-sm">
+                    <div className="text-sm dark:text-slate-300">
                       {payment ? formatCurrency(payment.due) : 'N/A'} due
                     </div>
                     <div>
-                      {status === 'paid' && <span className="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full font-medium">Paid</span>}
-                      {status === 'partial' && <span className="text-xs px-2 py-1 bg-amber-100 text-amber-700 rounded-full font-medium">Partial</span>}
-                      {status === 'unpaid' && <span className="text-xs px-2 py-1 bg-red-100 text-red-700 rounded-full font-medium">Unpaid</span>}
-                      {status === 'no-bill' && <span className="text-xs px-2 py-1 bg-slate-100 text-slate-600 rounded-full">No Bill</span>}
+                      {status === 'paid' && <span className="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full font-medium">Paid</span>}
+                      {status === 'partial' && <span className="text-xs px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 rounded-full font-medium">Partial</span>}
+                      {status === 'unpaid' && <span className="text-xs px-2 py-1 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 rounded-full font-medium">Unpaid</span>}
+                      {status === 'no-bill' && <span className="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-full">No Bill</span>}
                     </div>
                   </div>
                 </div>
@@ -135,14 +135,14 @@ export default function DashboardPage() {
 
 function KpiCard({ title, value, icon, trend, trendColor = 'text-slate-500' }: any) {
   return (
-    <Card>
+    <Card className="dark:bg-slate-900 border dark:border-slate-800 transition-shadow">
       <CardContent className="p-6">
         <div className="flex justify-between items-start">
           <div>
-            <p className="text-sm font-medium text-slate-500 mb-1">{title}</p>
-            <h3 className="text-2xl font-bold text-slate-900">{value}</h3>
+            <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">{title}</p>
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">{value}</h3>
           </div>
-          <div className="p-2 bg-slate-50 rounded-lg">
+          <div className="p-2 bg-slate-50 dark:bg-slate-800 rounded-lg">
             {icon}
           </div>
         </div>

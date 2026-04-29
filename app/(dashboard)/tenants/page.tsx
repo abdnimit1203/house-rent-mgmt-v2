@@ -95,71 +95,73 @@ export default function TenantsPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-slate-800">Tenants</h1>
+        <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Tenants</h1>
         <Button onClick={openAdd}>
           <Plus className="mr-2 h-4 w-4" /> Add Tenant
         </Button>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
-        <table className="w-full text-sm text-left">
-          <thead className="bg-slate-50 text-slate-500 font-medium border-b border-slate-200">
-            <tr>
-              <th className="px-6 py-4">Name</th>
-              <th className="px-6 py-4">Phone</th>
-              <th className="px-6 py-4">Room</th>
-              <th className="px-6 py-4">Rent</th>
-              <th className="px-6 py-4 text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-100">
-            {tenants?.length === 0 && (
+      <div className="bg-white dark:bg-slate-900 rounded-xl shadow-sm border dark:border-slate-800 overflow-hidden transition-colors">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left min-w-[600px]">
+            <thead className="bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 font-medium border-b dark:border-slate-800">
               <tr>
-                <td colSpan={5} className="px-6 py-8 text-center text-slate-500">
-                  No active tenants found. Add your first tenant above.
-                </td>
+                <th className="px-6 py-4">Name</th>
+                <th className="px-6 py-4">Phone</th>
+                <th className="px-6 py-4">Room</th>
+                <th className="px-6 py-4">Rent</th>
+                <th className="px-6 py-4 text-right">Actions</th>
               </tr>
-            )}
-            {tenants?.map((tenant) => (
-              <tr key={tenant._id} className="hover:bg-slate-50 transition-colors">
-                <td className="px-6 py-4 font-medium text-slate-900 flex items-center gap-3">
-                  <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                    <Users className="h-4 w-4" />
-                  </div>
-                  <div>
-                    {tenant.name}
-                    {tenant.category && <span className="ml-2 text-xs text-slate-400 font-normal">({tenant.category})</span>}
-                  </div>
-                </td>
-                <td className="px-6 py-4 text-slate-600">
-                  <div className="flex items-center gap-2">
-                    <Phone className="h-3 w-3 text-slate-400" />
-                    {tenant.phone}
-                  </div>
-                </td>
-                <td className="px-6 py-4">
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 border">
-                    {(tenant.roomId as any)?.roomNumber || tenant.room?.roomNumber || 'Unknown'}
-                  </span>
-                </td>
-                <td className="px-6 py-4 font-medium">
-                  {formatCurrency(tenant.monthlyRent)}
-                </td>
-                <td className="px-6 py-4 text-right space-x-2">
-                  <Button variant="outline" size="sm" onClick={() => setViewingTenant(tenant)}>
-                    <Eye className="h-3.5 w-3.5" />
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={() => openEdit(tenant)}>
-                    <Edit className="h-3.5 w-3.5" />
-                  </Button>
-                  <Button variant="destructive" size="sm" onClick={() => handleDelete(tenant._id, tenant.name)}>
-                    <Trash2 className="h-3.5 w-3.5" />
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+              {tenants?.length === 0 && (
+                <tr>
+                  <td colSpan={5} className="px-6 py-8 text-center text-slate-500">
+                    No active tenants found. Add your first tenant above.
+                  </td>
+                </tr>
+              )}
+              {tenants?.map((tenant) => (
+                <tr key={tenant._id} className="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                  <td className="px-6 py-4 font-medium text-slate-900 dark:text-slate-100 flex items-center gap-3">
+                    <div className="h-8 w-8 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary">
+                      <Users className="h-4 w-4" />
+                    </div>
+                    <div>
+                      {tenant.name}
+                      {tenant.category && <span className="ml-2 text-xs text-slate-400 dark:text-slate-500 font-normal">({tenant.category})</span>}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 text-slate-600 dark:text-slate-400">
+                    <div className="flex items-center gap-2">
+                      <Phone className="h-3 w-3 text-slate-400 dark:text-slate-500" />
+                      {tenant.phone}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border dark:border-slate-700">
+                      {(tenant.roomId as any)?.roomNumber || tenant.room?.roomNumber || 'Unknown'}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 font-medium dark:text-slate-200">
+                    {formatCurrency(tenant.monthlyRent)}
+                  </td>
+                  <td className="px-6 py-4 text-right space-x-2 whitespace-nowrap">
+                    <Button variant="outline" size="sm" onClick={() => setViewingTenant(tenant)}>
+                      <Eye className="h-3.5 w-3.5" />
+                    </Button>
+                    <Button variant="outline" size="sm" onClick={() => openEdit(tenant)}>
+                      <Edit className="h-3.5 w-3.5" />
+                    </Button>
+                    <Button variant="destructive" size="sm" onClick={() => handleDelete(tenant._id, tenant.name)}>
+                      <Trash2 className="h-3.5 w-3.5" />
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title={editingId ? 'Edit Tenant' : 'Add Tenant'}>
@@ -230,41 +232,41 @@ export default function TenantsPage() {
           <div className="space-y-6">
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <p className="text-slate-500 mb-1">Full Name</p>
-                <p className="font-semibold text-slate-900">{viewingTenant.name}</p>
+                <p className="text-slate-500 dark:text-slate-400 mb-1">Full Name</p>
+                <p className="font-semibold text-slate-900 dark:text-slate-100">{viewingTenant.name}</p>
               </div>
               <div>
-                <p className="text-slate-500 mb-1">Phone</p>
-                <p className="font-semibold text-slate-900">{viewingTenant.phone}</p>
+                <p className="text-slate-500 dark:text-slate-400 mb-1">Phone</p>
+                <p className="font-semibold text-slate-900 dark:text-slate-100">{viewingTenant.phone}</p>
               </div>
               <div>
-                <p className="text-slate-500 mb-1">Category</p>
-                <p className="font-medium text-slate-900">{viewingTenant.category || 'N/A'}</p>
+                <p className="text-slate-500 dark:text-slate-400 mb-1">Category</p>
+                <p className="font-medium text-slate-900 dark:text-slate-200">{viewingTenant.category || 'N/A'}</p>
               </div>
               <div>
-                <p className="text-slate-500 mb-1">Room Assignment</p>
-                <p className="font-medium text-slate-900">
+                <p className="text-slate-500 dark:text-slate-400 mb-1">Room Assignment</p>
+                <p className="font-medium text-slate-900 dark:text-slate-200">
                   Room {(viewingTenant.roomId as any)?.roomNumber || viewingTenant.room?.roomNumber || 'Unknown'}
                   {(viewingTenant.roomId as any)?.floor ? ` (${(viewingTenant.roomId as any)?.floor})` : ''}
                 </p>
               </div>
               <div>
-                <p className="text-slate-500 mb-1">Monthly Rent</p>
-                <p className="font-medium text-slate-900">{formatCurrency(viewingTenant.monthlyRent)}</p>
+                <p className="text-slate-500 dark:text-slate-400 mb-1">Monthly Rent</p>
+                <p className="font-medium text-slate-900 dark:text-slate-200">{formatCurrency(viewingTenant.monthlyRent)}</p>
               </div>
               <div>
-                <p className="text-slate-500 mb-1">Advance Paid</p>
-                <p className="font-medium text-slate-900">{formatCurrency(viewingTenant.advance || 0)}</p>
+                <p className="text-slate-500 dark:text-slate-400 mb-1">Advance Paid</p>
+                <p className="font-medium text-slate-900 dark:text-slate-200">{formatCurrency(viewingTenant.advance || 0)}</p>
               </div>
               <div>
-                <p className="text-slate-500 mb-1">Started Living</p>
-                <p className="font-medium text-slate-900">
+                <p className="text-slate-500 dark:text-slate-400 mb-1">Started Living</p>
+                <p className="font-medium text-slate-900 dark:text-slate-200">
                   {viewingTenant.startMonth ? new Date(0, viewingTenant.startMonth - 1).toLocaleString('default', { month: 'short' }) : 'Unknown'}, {viewingTenant.startYear || 'Unknown'}
                 </p>
               </div>
               <div>
-                <p className="text-slate-500 mb-1">Status</p>
-                <span className={`inline-block px-2 text-xs font-semibold rounded-full ${viewingTenant.isActive ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                <p className="text-slate-500 dark:text-slate-400 mb-1">Status</p>
+                <span className={`inline-block px-2 text-xs font-semibold rounded-full ${viewingTenant.isActive ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400' : 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'}`}>
                   {viewingTenant.isActive ? 'Active' : 'Inactive'}
                 </span>
               </div>
